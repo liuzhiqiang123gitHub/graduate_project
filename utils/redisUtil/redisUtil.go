@@ -8,7 +8,7 @@ var(
 	RedisConn redis.Conn
 )
 func InitRedis(addr string)(err error)  {
-	RedisConn, err = redis.Dial("tcp", "148.70.248.33:6379")
+	RedisConn, err = redis.Dial("tcp", "148.70.248.33:6379",redis.DialPassword("liuzhi19972123"))
 	if err != nil {
 		fmt.Println("Connect to redis error", err)
 	}

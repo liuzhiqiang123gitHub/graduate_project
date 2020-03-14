@@ -20,6 +20,6 @@ func StartHttpServer(port int) {
 		login.GET("/get_password_by_email", views.GetPasswordByEmail) //根据赛事tab获取赛事列表
 
 	}
-	err := router.Run(fmt.Sprintf("%s:%d", "localhost", port))
+	err := router.Run(fmt.Sprintf("%s:%d", "148.70.248.33", port))
 	fmt.Println(err)
 }
