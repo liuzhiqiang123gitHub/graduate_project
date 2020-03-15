@@ -1,6 +1,7 @@
 package views
 
 import (
+	"email/model"
 	httputils2 "email/utils/httputils"
 	"errors"
 	"fmt"
@@ -28,13 +29,20 @@ func LoginController(c *gin.Context) {
 		httputils2.ResponseError(c, rsp, err.Error())
 		return
 	}
+	userInfo :=model.UserInfoModel{}
+	err := userInfo.Login(req.Email,req.Password)
+	if err != nil {
+		fmt.Println("登陆失败")
+		httputils2.ResponseError(c, rsp, err.Error())
+		return
+	}
 	httputils2.ResponseOk(c, "rsp", "")
 	fmt.Printf("LoginController req=%+v ", req)
 	return
 }
 
 type GetPasswordReq struct {
-	Email    string `form:"email" json:"email" bind:"required"`
+	Email    string `form:"graduate_login" json:"graduate_login" bind:"required"`
 	Password string `form:"password" json:"password" bind:"required"`
 }
 type GetPasswordByEmailRsp struct {

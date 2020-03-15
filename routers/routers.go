@@ -15,9 +15,9 @@ func StartHttpServer(port int) {
 	login := router.Group("/v2")
 	{
 		//用户登录
-		login.GET("/login", views.LoginController)
+		login.POST("/login", views.LoginController)
 		//用户找回密码,暂时使用邮箱
-		login.GET("/get_password_by_email", views.GetPasswordByEmail) //根据赛事tab获取赛事列表
+		login.GET("/get_password_by_email", views.GetPasswordByEmail)
 
 	}
 	err := router.Run(fmt.Sprintf("%s:%d", "0.0.0.0", port))

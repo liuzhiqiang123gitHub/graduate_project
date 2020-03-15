@@ -1,19 +1,25 @@
 package main
 
-import "email/routers"
+import (
+	"email/routers"
+	"email/utils/dbutil"
+	"email/utils/redisUtil"
+	"fmt"
+)
 
 func main() {
-	//err := redisUtil.InitRedis("")
-	//if err != nil{
-	//	fmt.Println(err)
-	//	return
-	//}
-	//res,err := redisUtil.Get("level")
-	//if err!=nil {
-	//	fmt.Println(err)
-	//}
-	//fmt.Println(res)
-	routers.StartHttpServer(18080)
 
+	err := redisUtil.InitRedis("")
+	if err != nil{
+		fmt.Println(err)
+		return
+	}
+	dbutil.InitDb()
+	//fmt.Println("配置初始化成功")
+	routers.StartHttpServer(18080)
+	//res,err :=redisUtil.Get("123")
+	//if res == ""{
+	//	fmt.Println(err)
+	//}
 
 }
