@@ -7,9 +7,11 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
 )
+
 var (
 	LoginDBPool *gorm.DB
 )
+
 //初始化go-sql-driver/mysql 连接池
 func InitDbPool(config *config.MysqlConfig) (*sql.DB, error) {
 
@@ -54,14 +56,15 @@ func InitGormDbPool(config *config.MysqlConfig, setLog bool) (err error) {
 
 	return nil
 }
-func InitDb()  {
+func InitDb() error {
 	mysqlConf := &config.MysqlConfig{
-		MysqlConn:           fmt.Sprintf( "%s:%s@(%s:%d)/%s?charset=utf8&parseTime=True&loc=Local", "root","Liuzhi19972123", "148.70.248.33", 3306, "graduate_project"),
+		MysqlConn:            fmt.Sprintf("%s:%s@(%s:%d)/%s?charset=utf8&parseTime=True&loc=Local", "root", "Liuzhi19972123", "148.70.248.33", 3306, "graduate_project"),
 		MysqlConnectPoolSize: 10,
 	}
-	err := InitGormDbPool(mysqlConf,true)
-	if err!= nil{
+	err := InitGormDbPool(mysqlConf, true)
+	if err != nil {
 		fmt.Println(err)
-		return
+		return err
 	}
+	return err
 }

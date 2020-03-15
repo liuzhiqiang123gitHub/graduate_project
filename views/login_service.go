@@ -21,16 +21,16 @@ type GetLoginRsp struct {
 func LoginController(c *gin.Context) {
 	req := &LoginReq{}
 	rsp := GetLoginRsp{}
-	if err :=c.Bind(req);err != nil{
-		fmt.Printf("%+v",req)
+	if err := c.Bind(req); err != nil {
+		fmt.Printf("%+v", req)
 		err := errors.New("invalid params")
 		//clog.Logger.Warning("LoginController failed to %v", err.Error())
 		fmt.Printf("LoginController failed to %v", err.Error())
 		httputils2.ResponseError(c, rsp, err.Error())
 		return
 	}
-	userInfo :=model.UserInfoModel{}
-	err := userInfo.Login(req.Email,req.Password)
+	userInfo := model.UserInfoModel{}
+	err := userInfo.Login(req.Email, req.Password)
 	if err != nil {
 		fmt.Println("登陆失败")
 		httputils2.ResponseError(c, rsp, err.Error())
@@ -54,7 +54,7 @@ type GetPasswordByEmailRsp struct {
 func GetPasswordByEmail(c *gin.Context) {
 	req := &LoginReq{}
 	rsp := GetPasswordByEmailRsp{}
-	if err:=c.Bind(req) ;err!=nil {
+	if err := c.Bind(req); err != nil {
 		err := errors.New("invalid params")
 		fmt.Printf("GetPasswordByEmail failed to %v", err.Error())
 		httputils2.ResponseError(c, rsp, err.Error())

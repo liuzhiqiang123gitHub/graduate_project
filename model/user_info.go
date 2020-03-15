@@ -40,10 +40,12 @@ func GetName() string {
 func (userInfo *UserInfoModel) CreateUser() error {
 	return dbutil.LoginDBPool.Table(GetName()).Create(&userInfo).Error
 }
+
 //登录查询
-func (userInfo *UserInfoModel) Login(mail,password string) error {
-	return dbutil.LoginDBPool.Table(GetName()).Where("email=? and password=?",mail,password).Last(&userInfo).Error
+func (userInfo *UserInfoModel) Login(mail, password string) error {
+	return dbutil.LoginDBPool.Table(GetName()).Where("email=? and password=?", mail, password).Last(&userInfo).Error
 }
+
 //根据邮箱查询
 func (userInfo *UserInfoModel) GetUserByEmail(email string) error {
 	return dbutil.LoginDBPool.Table(GetName()).Where("email=?", email).Last(&userInfo).Error
