@@ -31,6 +31,7 @@ type UserInfoModel struct {
 	Age      int    `gorm:"column:age" json:"age"`
 	State    int    `gorm:"column:state" json:"state"`
 }
+type UserList []UserInfoModel
 
 func GetName() string {
 	return UserInfoModelName
@@ -67,4 +68,7 @@ func (userInfo *UserInfoModel) UpdateInfo(email, pass string) error {
 	//data["password"]=pass
 	userInfo.Password = pass
 	return dbutil.LoginDBPool.Table(GetName()).Where("email=? ", email).Update(&userInfo).Error
+}
+func (userList *UserList) GetAllUser() error {
+	return dbutil.LoginDBPool.Table(GetName()).Find(&userList).Error
 }

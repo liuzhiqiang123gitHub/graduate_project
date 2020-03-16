@@ -16,9 +16,10 @@ func StartHttpServer(port int) {
 	{
 		//用户登录
 		login.POST("/login", views.LoginController)
-		//用户找回密码,暂时使用邮箱
-		login.GET("/get_password_by_email", views.GetPasswordByEmail)
-
+		//验证码登录
+		login.POST("/login_with_validation_code", views.LoginByValidationCode)
+		//后台获取注册人数
+		login.POST("/backend_get_all_user", views.BackendGetAllUsers)
 	}
 	err := router.Run(fmt.Sprintf("%s:%d", "0.0.0.0", port))
 	fmt.Println(err)
