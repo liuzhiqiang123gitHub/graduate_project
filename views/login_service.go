@@ -3,15 +3,15 @@ package views
 import (
 	"email/controllers"
 	"email/model"
-	"email/utils/email"
-	httputils2 "email/utils/httputils"
 	"errors"
 	"fmt"
+	"gitee.com/liuzhiqiang9696/utils.git/email"
+	httputils2 "gitee.com/liuzhiqiang9696/utils.git/httputils"
 	"github.com/gin-gonic/gin"
 )
 
 type LoginReq struct {
-	Email    string `form:"graduate_login" json:"graduate_login" binding:"required"`
+	Email    string `form:"email" json:"email" binding:"required"`
 	Password string `form:"password" json:"password" binding:"required"`
 }
 type GetLoginRsp struct {
@@ -22,17 +22,25 @@ type GetLoginRsp struct {
 
 func LoginController(c *gin.Context) {
 	req := &LoginReq{}
-	rsp := GetLoginRsp{}
+	//rsp := GetLoginRsp{}
 	if err := c.Bind(req); err != nil {
 		fmt.Printf("%+v", req)
 		err := errors.New("invalid params")
 		//clog.Logger.Warning("LoginController failed to %v", err.Error())
 		fmt.Printf("LoginController failed to %v", err.Error())
-		httputils2.ResponseError(c, rsp, err.Error())
+		httputils2.ResponseError(c, "", err.Error())
 		return
 	}
-	httputils2.ResponseOk(c, "rsp", "")
 	fmt.Printf("LoginController req=%+v ", req)
+	rspdata,err := controllers.LoginController(req.Email,req.Password)
+	if err !=nil{
+		fmt.Println(err)
+		fmt.Println(rspdata)
+		httputils2.ResponseError(c, rspdata, err.Error())
+		return
+	}
+	//fmt.Println(rspdata)
+	httputils2.ResponseOk(c, rspdata, "")
 	return
 }
 

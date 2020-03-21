@@ -1,9 +1,9 @@
 package routers
 
 import (
-	"email/utils/httputils"
 	"email/views"
 	"fmt"
+	"gitee.com/liuzhiqiang9696/utils.git/httputils"
 	"github.com/gin-gonic/gin"
 )
 

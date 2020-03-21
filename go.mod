@@ -3,6 +3,7 @@ module email
 go 1.13
 
 require (
+	gitee.com/liuzhiqiang9696/utils.git v0.0.0-20200318125000-6265b8f58572
 	github.com/garyburd/redigo v1.6.0
 	github.com/gin-gonic/gin v1.5.0
 	github.com/go-sql-driver/mysql v1.4.1

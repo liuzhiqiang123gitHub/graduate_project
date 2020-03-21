@@ -1,7 +1,7 @@
 package model
 
 import (
-	"email/utils/dbutil"
+	"gitee.com/liuzhiqiang9696/utils.git/dbutil"
 )
 
 const (
@@ -44,22 +44,22 @@ func (userInfo *UserInfoModel) CreateUser() error {
 
 //登录查询
 func (userInfo *UserInfoModel) Login(mail, password string) error {
-	return dbutil.LoginDBPool.Table(GetName()).Where("email=? and password=?", mail, password).Last(&userInfo).Error
+	return dbutil.LoginDBPool.Table(GetName()).Where("email=? and password=?", mail, password).Take(&userInfo).Error
 }
 
 //根据邮箱查询
 func (userInfo *UserInfoModel) GetUserByEmail(email string) error {
-	return dbutil.LoginDBPool.Table(GetName()).Where("email=?", email).Last(&userInfo).Error
+	return dbutil.LoginDBPool.Table(GetName()).Where("email=?", email).Take(&userInfo).Error
 }
 
 //根据昵称查询
 func (userInfo *UserInfoModel) GetUserByNick(nick string) error {
-	return dbutil.LoginDBPool.Table(GetName()).Where("nickname=?", nick).Last(&userInfo).Error
+	return dbutil.LoginDBPool.Table(GetName()).Where("nickname=?", nick).Take(&userInfo).Error
 }
 
 //根据昵称查询
 func (userInfo *UserInfoModel) GetUserByPhone(phone string) error {
-	return dbutil.LoginDBPool.Table(GetName()).Where("phone=?", phone).Last(&userInfo).Error
+	return dbutil.LoginDBPool.Table(GetName()).Where("phone=?", phone).Take(&userInfo).Error
 }
 
 //更新密码

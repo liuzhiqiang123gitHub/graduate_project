@@ -2,9 +2,9 @@ package main
 
 import (
 	"email/routers"
-	"email/utils/dbutil"
-	"email/utils/redisUtil"
 	"fmt"
+	"gitee.com/liuzhiqiang9696/utils.git/dbutil"
+	"gitee.com/liuzhiqiang9696/utils.git/redisUtil"
 )
 
 func main() {

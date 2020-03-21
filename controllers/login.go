@@ -2,12 +2,33 @@ package controllers
 
 import (
 	"email/model"
-	"email/utils/redisUtil"
 	"errors"
 	"fmt"
+	"gitee.com/liuzhiqiang9696/utils.git/redisUtil"
 	"github.com/jinzhu/gorm"
 )
 
+func LoginController(email,password string)(model.UserInfoModel,error ){
+	userInfo := model.UserInfoModel{}
+	err := userInfo.GetUserByEmail(email)
+	if err != nil && err != gorm.ErrRecordNotFound {
+		fmt.Println("数据库查询失败")
+		return userInfo,err
+	} else if err != nil && err == gorm.ErrRecordNotFound {
+		fmt.Println("没有这个用户")
+		return userInfo,errors.New("没有这个用户")
+	}
+	userInfo = model.UserInfoModel{}
+	err = userInfo.Login(email,password)
+	if err != nil && err != gorm.ErrRecordNotFound {
+		fmt.Println("...数据库查询失败")
+		return userInfo,err
+	} else if err != nil && err == gorm.ErrRecordNotFound {
+		fmt.Println("请检查邮箱和密码")
+		return userInfo,errors.New("请检查邮箱和密码")
+	}
+	return userInfo,nil
+}
 func LoginByValidationCode(email, validationCode string) error {
 	//func (userInfo *UserInfoModel) GetUserByEmail(email string) error {
 	//	return dbutil.LoginDBPool.Table(GetName()).Where("email=?", email).Last(&userInfo).Error
