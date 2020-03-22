@@ -48,10 +48,12 @@ func LoginByValidationCode(email, validationCode string) error {
 	//username, err := redis.String(RedisConn.Do("GET", key))
 	//return username, err
 	//}
-	res, err := redisUtil.Get(validationCode)
+	res, err := redisUtil.Get(email)
 	if res == "" {
 		fmt.Printf("%s验证码过期", email)
-		return errors.New("验证码过期")
+		return errors.New("验证码或已失效")
+	}else{
+		return nil
 	}
 	return nil
 }

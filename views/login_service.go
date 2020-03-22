@@ -56,13 +56,13 @@ type GetLoginByValidationCodeRsp struct {
 
 func LoginByValidationCode(c *gin.Context) {
 	req := &GetLoginByValidationCodeReq{}
-	rsp := GetLoginByValidationCodeRsp{}
+	//rsp := GetLoginByValidationCodeRsp{}
 	if err := c.Bind(req); err != nil {
 		fmt.Printf("%+v", req)
 		err := errors.New("invalid params")
 		//clog.Logger.Warning("LoginController failed to %v", err.Error())
 		fmt.Printf("LoginControllerByValidation failed to %v", err.Error())
-		httputils2.ResponseError(c, rsp, err.Error())
+		httputils2.ResponseError(c, "", err.Error())
 		return
 	}
 	//验证邮箱
@@ -70,18 +70,18 @@ func LoginByValidationCode(c *gin.Context) {
 		err := errors.New("邮箱格式不合法")
 		//clog.Logger.Warning("LoginController failed to %v", err.Error())
 		fmt.Printf("LoginControllerByValidation failed to %v", err.Error())
-		httputils2.ResponseError(c, rsp, err.Error())
+		httputils2.ResponseError(c, "", err.Error())
 		return
 	} else if len(req.ValidateCode) != 6 {
 		err := errors.New("请输入正确的验证码")
 		//clog.Logger.Warning("LoginController failed to %v", err.Error())
 		fmt.Printf("LoginControllerByValidation failed to %v", err.Error())
-		httputils2.ResponseError(c, rsp, err.Error())
+		httputils2.ResponseError(c, "", err.Error())
 		return
 	}
 	err := controllers.LoginByValidationCode(req.Email, req.ValidateCode)
 	if err != nil {
-		httputils2.ResponseError(c, rsp, err.Error())
+		httputils2.ResponseError(c, "", err.Error())
 		return
 	}
 	httputils2.ResponseOk(c, "", "")
