@@ -29,7 +29,7 @@ func LoginController(email,password string)(model.UserInfoModel,error ){
 	}
 	return userInfo,nil
 }
-func LoginByValidationCode(email, validationCode string) error {
+func LoginByValidationCode(email, validationCode string)( error,model.UserInfoModel) {
 	//func (userInfo *UserInfoModel) GetUserByEmail(email string) error {
 	//	return dbutil.LoginDBPool.Table(GetName()).Where("email=?", email).Last(&userInfo).Error
 	//}
@@ -38,10 +38,10 @@ func LoginByValidationCode(email, validationCode string) error {
 	err := userInfo.GetUserByEmail(email)
 	if err != nil && err != gorm.ErrRecordNotFound {
 		fmt.Println("数据库查询失败")
-		return err
+		return err,userInfo
 	} else if err != nil && err == gorm.ErrRecordNotFound {
 		fmt.Println("没有这个用户")
-		return errors.New("没有这个用户")
+		return errors.New("没有这个用户"),userInfo
 	}
 	//查询验证码是否过期
 	//func Get(key interface{}) (res string, err error) {
@@ -51,9 +51,9 @@ func LoginByValidationCode(email, validationCode string) error {
 	res, err := redisUtil.Get(email)
 	if res == "" {
 		fmt.Printf("%s验证码过期", email)
-		return errors.New("验证码或已失效")
+		return errors.New("验证码或已失效"),userInfo
 	}else{
-		return nil
+		return nil,userInfo
 	}
-	return nil
+	return nil,userInfo
 }

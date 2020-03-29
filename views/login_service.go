@@ -79,12 +79,12 @@ func LoginByValidationCode(c *gin.Context) {
 		httputils2.ResponseError(c, "", err.Error())
 		return
 	}
-	err := controllers.LoginByValidationCode(req.Email, req.ValidateCode)
+	err,data := controllers.LoginByValidationCode(req.Email, req.ValidateCode)
 	if err != nil {
-		httputils2.ResponseError(c, "", err.Error())
+		httputils2.ResponseError(c, data, err.Error())
 		return
 	}
-	httputils2.ResponseOk(c, "", "")
+	httputils2.ResponseOk(c, data, "")
 	return
 }
 
