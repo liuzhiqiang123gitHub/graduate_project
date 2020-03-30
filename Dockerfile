@@ -7,7 +7,7 @@ COPY . /go/src/backend/graduate_project
 WORKDIR /go/src/backend/graduate_project
 
 RUN go build
-RUN export GOPROXY=
+RUN export GOPROXY="http://goproxy.cn"
 CMD if [ ${APP_ENV} = production ]; \
         then \
         app; \
