@@ -21,7 +21,7 @@ func main() {
 	}
 
 	//fmt.Println("配置初始化成功")
-	routers.StartHttpServer(18080)
+	routers.StartHttpServer(19370)
 	//res,err :=redisUtil.Get("123")
 	//if res == ""{
 	//	fmt.Println(err)

@@ -16,4 +16,4 @@ CMD if [ ${APP_ENV} = production ]; \
         fresh; \
         fi
 
-EXPOSE 18080
+EXPOSE 19370
