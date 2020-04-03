@@ -1,3 +1,8 @@
+# gitee.com/liuzhiqiang9696/utils.git v0.0.0-20200403152622-0009eef28ab3
+gitee.com/liuzhiqiang9696/utils.git/dbutil
+gitee.com/liuzhiqiang9696/utils.git/email
+gitee.com/liuzhiqiang9696/utils.git/httputils
+gitee.com/liuzhiqiang9696/utils.git/redisUtil
 # github.com/garyburd/redigo v1.6.0
 github.com/garyburd/redigo/internal
 github.com/garyburd/redigo/redis
@@ -13,8 +18,14 @@ github.com/go-playground/locales
 github.com/go-playground/locales/currency
 # github.com/go-playground/universal-translator v0.16.0
 github.com/go-playground/universal-translator
+# github.com/go-sql-driver/mysql v1.4.1
+github.com/go-sql-driver/mysql
 # github.com/golang/protobuf v1.3.2
 github.com/golang/protobuf/proto
+# github.com/jinzhu/gorm v1.9.12
+github.com/jinzhu/gorm
+# github.com/jinzhu/inflection v1.0.0
+github.com/jinzhu/inflection
 # github.com/json-iterator/go v1.1.7
 github.com/json-iterator/go
 # github.com/leodido/go-urn v1.1.0
@@ -29,7 +40,13 @@ github.com/modern-go/reflect2
 github.com/ugorji/go/codec
 # golang.org/x/sys v0.0.0-20190813064441-fde4db37ae7a
 golang.org/x/sys/unix
+# google.golang.org/appengine v1.4.0
+google.golang.org/appengine/cloudsql
+# gopkg.in/alexcesaro/quotedprintable.v3 v3.0.0-20150716171945-2caba252f4dc
+gopkg.in/alexcesaro/quotedprintable.v3
 # gopkg.in/go-playground/validator.v9 v9.29.1
 gopkg.in/go-playground/validator.v9
+# gopkg.in/gomail.v2 v2.0.0-20160411212932-81ebce5c23df
+gopkg.in/gomail.v2
 # gopkg.in/yaml.v2 v2.2.2
 gopkg.in/yaml.v2

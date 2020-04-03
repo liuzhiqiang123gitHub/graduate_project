@@ -10,7 +10,7 @@ import (
 
 func main() {
 	runtime.GOMAXPROCS(runtime.NumCPU())
-	err := redisUtil.InitRedis("")
+	err := redisUtil.InitRedis("148.70.248.33:6379")
 	if err != nil {
 		fmt.Println(err)
 		return
