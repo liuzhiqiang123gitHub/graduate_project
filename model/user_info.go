@@ -1,8 +1,6 @@
 package model
 
-import (
-	"gitee.com/liuzhiqiang9696/utils.git/dbutil"
-)
+import "email/utils/dbutil"
 
 const (
 	UserInfoModelName = "user_info"

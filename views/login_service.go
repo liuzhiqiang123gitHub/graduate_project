@@ -3,10 +3,10 @@ package views
 import (
 	"email/controllers"
 	"email/model"
+	"email/utils/email"
+	"email/utils/httputils"
 	"errors"
 	"fmt"
-	"gitee.com/liuzhiqiang9696/utils.git/email"
-	httputils2 "gitee.com/liuzhiqiang9696/utils.git/httputils"
 	"github.com/gin-gonic/gin"
 )
 
@@ -28,7 +28,7 @@ func LoginController(c *gin.Context) {
 		err := errors.New("invalid params")
 		//clog.Logger.Warning("LoginController failed to %v", err.Error())
 		fmt.Printf("LoginController failed to %v", err.Error())
-		httputils2.ResponseError(c, "", err.Error())
+		httputils.ResponseError(c, "", err.Error())
 		return
 	}
 	fmt.Printf("LoginController req=%+v ", req)
@@ -36,11 +36,11 @@ func LoginController(c *gin.Context) {
 	if err !=nil{
 		fmt.Println(err)
 		fmt.Println(rspdata)
-		httputils2.ResponseError(c, rspdata, err.Error())
+		httputils.ResponseError(c, rspdata, err.Error())
 		return
 	}
 	//fmt.Println(rspdata)
-	httputils2.ResponseOk(c, rspdata, "")
+	httputils.ResponseOk(c, rspdata, "")
 	return
 }
 
@@ -62,7 +62,7 @@ func LoginByValidationCode(c *gin.Context) {
 		err := errors.New("invalid params")
 		//clog.Logger.Warning("LoginController failed to %v", err.Error())
 		fmt.Printf("LoginControllerByValidation failed to %v", err.Error())
-		httputils2.ResponseError(c, "", err.Error())
+		httputils.ResponseError(c, "", err.Error())
 		return
 	}
 	//验证邮箱
@@ -70,21 +70,21 @@ func LoginByValidationCode(c *gin.Context) {
 		err := errors.New("邮箱格式不合法")
 		//clog.Logger.Warning("LoginController failed to %v", err.Error())
 		fmt.Printf("LoginControllerByValidation failed to %v", err.Error())
-		httputils2.ResponseError(c, "", err.Error())
+		httputils.ResponseError(c, "", err.Error())
 		return
 	} else if len(req.ValidateCode) != 6 {
 		err := errors.New("请输入正确的验证码")
 		//clog.Logger.Warning("LoginController failed to %v", err.Error())
 		fmt.Printf("LoginControllerByValidation failed to %v", err.Error())
-		httputils2.ResponseError(c, "", err.Error())
+		httputils.ResponseError(c, "", err.Error())
 		return
 	}
 	err,data := controllers.LoginByValidationCode(req.Email, req.ValidateCode)
 	if err != nil {
-		httputils2.ResponseError(c, data, err.Error())
+		httputils.ResponseError(c, data, err.Error())
 		return
 	}
-	httputils2.ResponseOk(c, data, "")
+	httputils.ResponseOk(c, data, "")
 	return
 }
 
@@ -105,7 +105,7 @@ func BackendGetAllUsers(c *gin.Context) {
 		err := errors.New("invalid params")
 		//clog.Logger.Warning("LoginController failed to %v", err.Error())
 		fmt.Printf("BackendGetAllUsers failed to %v", err.Error())
-		httputils2.ResponseError(c, rsp, err.Error())
+		httputils.ResponseError(c, rsp, err.Error())
 		return
 	}
 	userList := model.UserList{}
@@ -113,10 +113,10 @@ func BackendGetAllUsers(c *gin.Context) {
 	if err != nil {
 		fmt.Println("查询失败")
 		err = errors.New("查询失败")
-		httputils2.ResponseError(c, rsp, err.Error())
+		httputils.ResponseError(c, rsp, err.Error())
 		return
 	}
 
-	httputils2.ResponseOk(c, userList, "")
+	httputils.ResponseOk(c, userList, "")
 
 }

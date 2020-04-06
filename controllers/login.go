@@ -2,9 +2,9 @@ package controllers
 
 import (
 	"email/model"
+	"email/utils/redisUtil"
 	"errors"
 	"fmt"
-	"gitee.com/liuzhiqiang9696/utils.git/redisUtil"
 	"github.com/jinzhu/gorm"
 )
 

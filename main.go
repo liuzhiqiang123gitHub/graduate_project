@@ -2,20 +2,21 @@ package main
 
 import (
 	"email/routers"
+	config "email/utils/conf"
+	"email/utils/dbutil"
+	"email/utils/redisUtil"
 	"fmt"
-	"gitee.com/liuzhiqiang9696/utils.git/dbutil"
-	"gitee.com/liuzhiqiang9696/utils.git/redisUtil"
 	"runtime"
 )
 
 func main() {
 	runtime.GOMAXPROCS(runtime.NumCPU())
-	err := redisUtil.InitRedis("148.70.248.33:6379")
+	err := redisUtil.InitRedis(config.Conf)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
-	err = dbutil.InitDb()
+	err = dbutil.InitDb(config.Conf)
 	if err != nil {
 		fmt.Println(err)
 		return
