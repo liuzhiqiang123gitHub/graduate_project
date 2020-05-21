@@ -49,11 +49,12 @@ func LoginByValidationCode(email, validationCode string)( error,model.UserInfoMo
 	//return username, err
 	//}
 	res, err := redisUtil.Get(email)
+	valiStr := fmt.Sprintf("%s_%s",email,validationCode)
 	if res == "" {
 		fmt.Printf("%s验证码过期", email)
 		return errors.New("验证码或已失效"),userInfo
-	}else{
+	}else if res == valiStr{
 		return nil,userInfo
 	}
-	return nil,userInfo
+	return errors.New("系统错误"),userInfo
 }
